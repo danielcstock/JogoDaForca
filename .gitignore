@@ -1,0 +1,10 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/.vs/slnx.sqlite
+/.vs/slnx.sqlite-journal
+/.vs/VSWorkspaceState.json
+/JogoDaForca.API/.vs/JogoDaForca.API/DesignTimeBuild/.dtbcache.v2
+/JogoDaForca.API/.vs/JogoDaForca.API/v16/.suo
+/.vs/JogoDaForca/v16/.suo

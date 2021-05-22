@@ -17,7 +17,6 @@ class DBConnector():
                 host="127.0.0.1",
                 port=3306,
                 database="db_jogodaforca"
-
             )
         except mariadb.Error as e:
             print(f"Error connecting to MariaDB Platform: {e}")
@@ -28,6 +27,4 @@ class DBConnector():
 
     def select(self, query):
         self.cur.execute(query)
-
-        for (categoria, palavra) in self.cur:
-            print(f"Categoria: {categoria}, Palavra: {palavra}")
+        return self.cur

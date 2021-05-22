@@ -61,3 +61,9 @@ sudo apt-get install pip
 ```
 sudo apt install libmariadb3 libmariadb-dev
 ```
+```
+pip install flask
+```
+```
+pip install mariadb
+```

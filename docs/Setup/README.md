@@ -44,3 +44,20 @@ apt-cache madison docker-ce
 ```
 sudo apt-get install docker-ce=5:20.10.6~3-0~ubuntu-groovy docker-ce-cli=5:20.10.6~3-0~ubuntu-groovy containerd.io
 ```
+
+### MariaDB
+
+```
+docker run -p 127.0.0.1:3306:3306  --name mariadb-JogoDaForca -e MARIADB_ROOT_PASSWORD=jdf-abc -d mariadb:
+```
+
+### Ambiente Python
+```
+sudo apt-get install python
+```
+```
+sudo apt-get install pip
+```
+```
+sudo apt install libmariadb3 libmariadb-dev
+```

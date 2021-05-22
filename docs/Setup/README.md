@@ -1,6 +1,6 @@
-## Instalação dos pacotes do projeto
+## Instalação dos pacotes do projeto :inbox_tray:
 
-### Docker
+### Docker :whale:
 Todo o projeto é rodado em container Docker, logo, é preciso instalar alguns pacotes antes de executar o jogo.
 Siga o tutorial abaixo para instalar corretamente as ferramentas necessárias no ambiente linux (Ubuntu).
 
@@ -45,13 +45,13 @@ apt-cache madison docker-ce
 sudo apt-get install docker-ce=5:20.10.6~3-0~ubuntu-groovy docker-ce-cli=5:20.10.6~3-0~ubuntu-groovy containerd.io
 ```
 
-### MariaDB
+### MariaDB :notebook_with_decorative_cover:
 
 ```
 docker run -p 127.0.0.1:3306:3306  --name mariadb-JogoDaForca -e MARIADB_ROOT_PASSWORD=jdf-abc -d mariadb:
 ```
 
-### Ambiente Python
+### Ambiente Python :keyboard:
 ```
 sudo apt-get install python
 ```

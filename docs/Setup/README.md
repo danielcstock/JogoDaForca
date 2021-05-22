@@ -67,3 +67,6 @@ pip install flask
 ```
 pip install mariadb
 ```
+```
+pip install requests
+```

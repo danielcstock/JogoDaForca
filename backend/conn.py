@@ -8,7 +8,7 @@ class DBConnector():
         Classe para conexão com o banco de dados.
     '''
 
-    def connect(self):
+    def __init__(self):
         # Connect to MariaDB Platform
         try:
             conn = mariadb.connect(
@@ -27,4 +27,7 @@ class DBConnector():
 
     def select(self, query):
         self.cur.execute(query)
-        return self.cur
+        response = []
+        for _, value in enumerate(self.cur):
+            response.append(value)
+        return response

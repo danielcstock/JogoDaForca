@@ -1,10 +1,7 @@
-from conn import DBConnector
-from roleta import Roleta
+import requests
 
 if __name__ == '__main__':
-    connector = DBConnector()
-    roleta = Roleta()
-
-    connector.connect()
-    connector.select("SELECT tc.nome as categoria, tp.palavra FROM tb_categoria tc INNER JOIN tb_palavra tp ON tp.categoria = tc.id")
-    print(roleta.pontuacaoRodada())
+    # connector.select("SELECT tc.nome as categoria, tp.palavra FROM tb_categoria tc INNER JOIN tb_palavra tp ON tp.categoria = tc.id")
+    response = requests.get("http://localhost:5000/getPoints")
+    if response.status_code == 200:
+        print(response.json()["value"])

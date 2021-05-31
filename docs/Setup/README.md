@@ -70,3 +70,11 @@ pip install mariadb
 ```
 pip install requests
 ```
+(websockets)[https://github.com/aaugustin/websockets]
+```
+pip install websockets
+```
+(asyncio)[]
+```
+pip install asyncio
+```

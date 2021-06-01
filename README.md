@@ -32,3 +32,10 @@ Opcional: implemente cliente e servidor em linguagens de programação distintas
 Submeta o link para a página do projeto e controle de versão de sua plataforma favorita. O projeto deve ser aberto ao público. O projeto deve ter um `README.md` com instruções de como instalar e rodar cada uma das versões do jogo.
 
 Submeta ainda um vídeo com 4 minutos de duração, apresentando o projeto (tecnologias utilizadas, arquitetura, etc) e demonstrando em funcionamento a versão mais complexa que tiver conseguido implementar.
+
+## Como rodar 
+```
+python3 backend/api.py
+python3 backend/webserver.py
+pytho3 backend/main.py
+```

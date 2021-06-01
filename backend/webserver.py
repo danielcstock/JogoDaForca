@@ -3,6 +3,7 @@ from websockets import serve
 
 async def echo(websocket, path):
     async for message in websocket:
+        print(message)
         await websocket.send(message)
 
 async def main():

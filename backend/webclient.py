@@ -1,9 +1,11 @@
 import asyncio
 from websockets import connect
 
-async def hello(uri):
-    async with connect(uri) as websocket:
-        await websocket.send("Hello world!")
-        await websocket.recv()
+class SocketClient:
+    async def hello(self, uri, message):
+        async with connect(uri) as websocket:
+            await websocket.send(message)
+            await websocket.recv()
 
-asyncio.run(hello("ws://localhost:8765"))
+#    asyncio.run(hello("ws://localhost:8765", "A"))
+        

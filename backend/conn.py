@@ -31,3 +31,6 @@ class DBConnector():
         for _, value in enumerate(self.cur):
             response.append(value)
         return response
+
+    def insert(self, query):
+        self.cur.execute(query)

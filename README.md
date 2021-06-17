@@ -35,7 +35,14 @@ Submeta ainda um vídeo com 4 minutos de duração, apresentando o projeto (tecn
 
 ## Como rodar 
 ```
+docker run -p 127.0.0.1:3306:3306 --name mariadb-JogoDaForca -e MARIADB_ROOT_PASSWORD=jdf-abc -d mariadb
+```
+```
 python3 backend/api.py
+```
+```
 python3 backend/webserver.py
-pytho3 backend/main.py
+```
+```
+python3 backend/main.py
 ```

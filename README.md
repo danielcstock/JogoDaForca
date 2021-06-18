@@ -44,5 +44,6 @@ python3 backend/api.py
 python3 backend/webserver.py
 ```
 ```
-python3 backend/main.py
+cd frontend
+npm install && npm start
 ```

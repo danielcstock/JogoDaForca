@@ -10,7 +10,7 @@ app = flask.Flask(__name__)
 app.config["DEBUG"] = True
 client = SocketClient()
 
-@app.route('/getPoints', methods=['GET'])
+@app.route('/points', methods=['GET'])
 def getPoints():
     roleta = Roleta()
     point = {
@@ -18,7 +18,7 @@ def getPoints():
     }
     return point
 
-@app.route('/getRound', methods=['GET'])
+@app.route('/round', methods=['GET'])
 def getRound():
     conn = DBConnector()
     qry_count_categoria = conn.select("SELECT count(id) FROM tb_categoria")
@@ -33,13 +33,25 @@ def getRound():
     }
     return round
 
-@app.route('/getPlace', methods=['GET'])
+@app.route('/place', methods=['GET'])
 def getPlace():
     nome_usuario = request.args.get('nome', type = str)
-    
-    # conn = DBConnector()
+    conn = DBConnector()
+
+    contador_jogadores = asyncio.run(client.enter("ws://localhost:8765", nome_usuario))
+
     # conn.insert("INSERT INTO tb_usuario (id, nome) VALUES (1, 'Daniel')")
-    
-    contador_jogacores = asyncio.run(client.enter("ws://localhost:8765", nome_usuario))
-    return "Aguardando mais " + str(3 - contador_jogacores) + " jogador(es)..."
+    # insert no banco do numero de jogares na partida
+
+    return "<a href='http://localhost:5000/players'>Verificar jogadores</a>"
+
+@app.route('/players', methods=['GET'])
+def getPlayers():
+    contador_jogadores = 1
+    # select no banco do numero de jogadores na partida
+    if contador_jogadores == 3:
+        return "Todos os jogadores estao prontos!"
+    else:
+        return "Aguardando mais " + str(3 - contador_jogadores) + " jogador(es)...<br><a href='http://localhost:5000/players'>Verificar jogadores</a>"
+
 app.run()

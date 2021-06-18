@@ -1,12 +1,14 @@
 import flask
 import random
 import asyncio
+from flask import request
 from roleta import Roleta
 from conn import DBConnector
 from webclient import SocketClient
 
 app = flask.Flask(__name__)
 app.config["DEBUG"] = True
+client = SocketClient()
 
 @app.route('/getPoints', methods=['GET'])
 def getPoints():
@@ -31,13 +33,13 @@ def getRound():
     }
     return round
 
-@app.route('/getPlace/<nome_usuario>', methods=['GET'])
-def getPlace(nome_usuario):
-    client = SocketClient()
-
+@app.route('/getPlace', methods=['GET'])
+def getPlace():
+    nome_usuario = request.args.get('nome', type = str)
+    
     # conn = DBConnector()
     # conn.insert("INSERT INTO tb_usuario (id, nome) VALUES (1, 'Daniel')")
     
-    asyncio.run(client.hello("ws://localhost:8765", nome_usuario))
-    return "Aguardando jogadores..."
+    contador_jogacores = asyncio.run(client.enter("ws://localhost:8765", nome_usuario))
+    return "Aguardando mais " + str(3 - contador_jogacores) + " jogador(es)..."
 app.run()

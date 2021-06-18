@@ -11,3 +11,4 @@
 backend/__pycache__/conn.cpython-38.pyc
 backend/__pycache__/roleta.cpython-38.pyc
 backend/__pycache__/webclient.cpython-38.pyc
+frontend/node_modules

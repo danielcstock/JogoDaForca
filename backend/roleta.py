@@ -11,3 +11,6 @@ class Roleta:
     def pontuacaoRodada(self):
         x = random.randint(0, len(self.casas)-1)
         return self.casas[x]
+
+    def dicaRodada(self):
+        return "Animal"

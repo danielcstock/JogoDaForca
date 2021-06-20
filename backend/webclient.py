@@ -1,17 +1,16 @@
-import asyncio
 from websockets import connect
 
 class SocketClient:
-    def __init__(self):
-        self.contador_jogadores = 0
+    def __init__(self, uri, player):
+        self.name = player
+        self.points = 0
+        self.uri = uri
+    
+    def setPoints(self, points):
+        self.points = points
 
-    async def enter(self, uri, message):
-        self.contador_jogadores += 1
-        async with connect(uri) as websocket:
-            await websocket.send(message)
+    async def sendLetter(self, message):
+        async with connect(self.uri) as websocket:
+            await websocket.send(f"{self.name}:{message}:{self.points}")
             await websocket.recv()
-        return self.contador_jogadores
-
-
-#    asyncio.run(hello("ws://localhost:8765", "A"))
         

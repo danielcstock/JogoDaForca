@@ -1,13 +1,26 @@
-import requests
 import asyncio
+from server import Server
 from webclient import SocketClient
+from roleta import Roleta
+
+def getHint():
+    return "Animal"
+
+def startRound():
+    print("Rodada 1:\n")
+    print("Dica: " + getHint())
 
 if __name__ == '__main__':
-    # response = requests.get("http://localhost:5000/getPoints")
-    # if response.status_code == 200:
-    #     print(response.json()["value"])
-    client = SocketClient()
+    portas = [8765, 8766, 8767]
+    server = Server()
+    
+    for porta in portas:
+        try:
+            server.start(porta)
+        except:
+            print("Tentando reconectar...\n")
+    quit()
 
-    while(True):
-        letra = input()
-        asyncio.run(client.hello("ws://localhost:8765", letra))
+    
+    
+

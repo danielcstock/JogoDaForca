@@ -20,7 +20,7 @@ def getPoints():
     point = {
         'value': roleta.pontuacaoRodada()
     }
-    return point["value"]
+    return point
 
 @app.route('/place', methods=['GET'])
 def getPlace():
@@ -97,7 +97,7 @@ def play():
         <span>0</span>\
         </div>\
         <div>\
-        <form action='http://localhost:5000/place'>\
+        <form action='http://localhost:5000/points'>\
         <input type='submit' value='Girar a roda'>\
         </form>\
         <form>\

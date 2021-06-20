@@ -65,17 +65,13 @@ def getPlayers():
 @app.route('/match', methods=['GET'])
 def play():
     partida = request.args.get('partida', type = str)
-    round = requests.get("http://localhost:5000/round")
-    players = conn.executeQuery(\
-                "SELECT tu.id, tu.nome FROM tb_usuario tu \
-                WHERE tu.id IN (SELECT jogador_1 FROM tb_partida WHERE id = " + partida + ") OR \
-                tu.id IN (SELECT jogador_2 FROM tb_partida WHERE id = " + partida + ") OR \
-                tu.id IN (SELECT jogador_3 FROM tb_partida WHERE id = " + partida + ")")
-    payload_round = round.json()
+    players = jogo.buscarJogadores(partida)
+    words = jogo.buscarPalavras(partida)
+    hint = jogo.buscarDica(partida)
 
-    palavra_1 = payload_round["words"][0][1]
-    palavra_2 = payload_round["words"][1][1]
-    palavra_3 = payload_round["words"][2][1]
+    palavra_1 = words[0][0]
+    palavra_2 = words[1][0]
+    palavra_3 = words[2][0]
 
     jogador_1 = players[0][1]
     jogador_2 = players[1][1]
@@ -86,7 +82,7 @@ def play():
         <span id='palavra-1'>" + "_ " * len(palavra_1) + "</span><br>\
         <span id='palavra-2'>" + "_ " * len(palavra_2) + "</span><br>\
         <span id='palavra-3'>" + "_ " * len(palavra_3) + "</span><br><br>\
-        <span id='dica'>Dica: " + str(payload_round["category"][0][1]) +"</span><br><br>\
+        <span id='dica'>Dica: " + str(hint) +"</span><br><br>\
         </div>\
         <div id='jogador-1'>\
         <span>" + jogador_1 + ":</span>\

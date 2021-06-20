@@ -17,3 +17,24 @@ class Jogo:
         self.conn.update("tb_partida", "palavra_2", qry_palavras[1][0], id)
         self.conn.update("tb_partida", "palavra_3", qry_palavras[2][0], id)
         self.conn.update("tb_partida", "dica", categoria, id)
+
+    def buscarJogadores(self, partida):
+        jogadores = self.conn.executeQuery(\
+                "SELECT tu.id, tu.nome FROM tb_usuario tu \
+                WHERE tu.id IN (SELECT jogador_1 FROM tb_partida WHERE id = " + partida + ") OR \
+                tu.id IN (SELECT jogador_2 FROM tb_partida WHERE id = " + partida + ") OR \
+                tu.id IN (SELECT jogador_3 FROM tb_partida WHERE id = " + partida + ")")
+        return jogadores
+
+    def buscarPalavras(self, partida):
+        palavras = self.conn.executeQuery(\
+                "SELECT p.palavra FROM tb_palavra p \
+                WHERE id IN (SELECT palavra_1 FROM tb_partida WHERE id = " + partida + ") OR \
+                id IN (SELECT palavra_2 FROM tb_partida WHERE id = " + partida + ") OR \
+                id IN (SELECT palavra_3 FROM tb_partida WHERE id = " + partida + ")")
+        return palavras
+
+    def buscarDica(self, partida):
+        dica = self.conn.executeQuery("SELECT c.nome FROM tb_categoria c \
+                WHERE id IN (SELECT dica FROM tb_partida WHERE id = " + partida + ")")
+        return dica[0][0]

@@ -28,3 +28,4 @@ python3 backend/main.py
 ```
 python3 backend;client.py
 ```
+![image](https://user-images.githubusercontent.com/30013171/122686384-0f57e080-d1e7-11eb-8dbd-dc96bf7333de.png)

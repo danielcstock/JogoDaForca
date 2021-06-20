@@ -34,16 +34,19 @@ Submeta o link para a página do projeto e controle de versão de sua plataforma
 Submeta ainda um vídeo com 4 minutos de duração, apresentando o projeto (tecnologias utilizadas, arquitetura, etc) e demonstrando em funcionamento a versão mais complexa que tiver conseguido implementar.
 
 ## Como rodar 
+### Versão 1.0
 ```
-docker run -p 127.0.0.1:3306:3306 --name mariadb-JogoDaForca -e MARIADB_ROOT_PASSWORD=jdf-abc -d mariadb
-```
-```
-python3 backend/api.py
+python3 backend/client.py
 ```
 ```
-python3 backend/webserver.py
+python3 backend/main.py
+```
+
+### Versão 2.0
+
+```
+python3 backend/rpcclient.py
 ```
 ```
-cd frontend
-npm install && npm start
+python3 backend/rpcserver.py
 ```

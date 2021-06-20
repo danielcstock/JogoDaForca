@@ -22,14 +22,15 @@ if __name__ == '__main__':
     for porta in portas:
         clients.append(SocketClient(f"{uri}:{porta}", jogador))
 
-    startRound()
-
     for client in clients:
             try:
                 client.setPoints(0)
                 asyncio.run(client.sendLetter("inicio"))
             except:
                 print("")
+    input("Pressione enter quando o terminal do jogo anunciar o inicio.")
+
+    startRound()
 
     while(True):
         points = roleta.pontuacaoRodada()

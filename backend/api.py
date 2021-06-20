@@ -10,7 +10,7 @@ from jogo import Jogo
 
 app = flask.Flask(__name__)
 app.config["DEBUG"] = True
-client = SocketClient()
+# client = SocketClient()
 conn = DBConnector()
 jogo = Jogo()
 

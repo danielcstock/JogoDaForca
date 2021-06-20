@@ -15,11 +15,12 @@ class Server:
         player = command[0]
         letter = command[1]
         points = command[2]
-        print(f"{player} - {letter} - {points}")
-        for i, l in enumerate(self.word):
-            if letter == l and self.hidden[i] == "_":
-                self.hidden = self.hidden[:i] + letter + self.hidden[i+1:]
-                self.players[player] += int(points)
+        if len(letter) == 1:
+            print(f"{player} - {letter} - {points}")
+            for i, l in enumerate(self.word):
+                if letter == l and self.hidden[i] == "_":
+                    self.hidden = self.hidden[:i] + letter + self.hidden[i+1:]
+                    self.players[player] += int(points)
         print(self.hidden)
 
     def checkWord(self):
@@ -32,7 +33,8 @@ class Server:
         if player not in self.players:
             self.players[player] = 0
         if len(self.players) >= 3:
-            print("O jogo começou!\n")
+            keys = self.players.keys()
+            print(f"O jogo começou!\nÉ a vez de:")
             return True
         return False
 

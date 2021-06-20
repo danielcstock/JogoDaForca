@@ -34,7 +34,6 @@ class Server:
             self.players[player] = 0
         if len(self.players) >= 3:
             keys = self.players.keys()
-            print(f"O jogo começou!\nÉ a vez de:")
             return True
         return False
 

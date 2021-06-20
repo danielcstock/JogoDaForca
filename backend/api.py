@@ -73,29 +73,41 @@ def getPlayers():
 
 @app.route('/match', methods=['GET'])
 def play():
+    partida = request.args.get('partida', type = str)
     round = requests.get("http://localhost:5000/round")
-    payload = round.json()
-    palavra_1 = payload["words"][0][1]
-    palavra_2 = payload["words"][1][1]
-    palavra_3 = payload["words"][2][1]
+    players = conn.executeQuery(\
+                "SELECT tu.id, tu.nome FROM tb_usuario tu \
+                WHERE tu.id IN (SELECT jogador_1 FROM tb_partida WHERE id = " + partida + ") OR \
+                tu.id IN (SELECT jogador_2 FROM tb_partida WHERE id = " + partida + ") OR \
+                tu.id IN (SELECT jogador_3 FROM tb_partida WHERE id = " + partida + ")")
+    payload_round = round.json()
+
+    palavra_1 = payload_round["words"][0][1]
+    palavra_2 = payload_round["words"][1][1]
+    palavra_3 = payload_round["words"][2][1]
+
+    jogador_1 = players[0][1]
+    jogador_2 = players[1][1]
+    jogador_3 = players[2][1]
+    
     return "<h1>Roda a Roda</h1>\
         <div id='quadro'>\
-        <span id='palavra-1'>" + palavra_1 + "</span><br>\
-        <span id='palavra-2'>" + palavra_2 + "</span><br>\
-        <span id='palavra-3'>" + palavra_3 + "</span><br><br>\
-        <span id='dica'>Dica: " + str(payload["category"][0][1]) +"</span><br><br>\
+        <span id='palavra-1'>" + "_ " * len(palavra_1) + "</span><br>\
+        <span id='palavra-2'>" + "_ " * len(palavra_2) + "</span><br>\
+        <span id='palavra-3'>" + "_ " * len(palavra_3) + "</span><br><br>\
+        <span id='dica'>Dica: " + str(payload_round["category"][0][1]) +"</span><br><br>\
         </div>\
         <div id='jogador-1'>\
-        <span>Nome</span>\
-        <span>Pontos</span>\
+        <span>" + jogador_1 + ":</span>\
+        <span>0</span>\
         </div>\
         <div id='jogador-2'>\
-        <span>Nome</span>\
-        <span>Pontos</span>\
+        <span>" + jogador_2 + ":</span>\
+        <span>0</span>\
         </div>\
         <div id='jogador-3'>\
-        <span>Nome</span>\
-        <span>Pontos</span>\
+        <span>" + jogador_3 + ":</span>\
+        <span>0</span>\
         </div>\
         <div>\
         <form action='http://localhost:5000/place'>\

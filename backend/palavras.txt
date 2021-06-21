@@ -1,0 +1,7 @@
+"abelha:animal"
+"cadeira:objeto"
+"feijoada:comida"
+"beterraba:legume"
+"abacaxi:fruta"
+"computador:objeto"
+

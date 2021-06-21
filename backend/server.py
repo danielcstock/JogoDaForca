@@ -1,14 +1,25 @@
 import asyncio
+import random
 from websockets import serve
 
 class Server:
     def __init__(self):
-        self.word = self.getWord()
+        arquivo = open('palavras.txt', 'r')
+        lista_palavras = arquivo.readlines()
+        linha = random.choice(lista_palavras)
+        self.word = self.getWord(linha)
+        self.hint = self.getHint(linha)
         self.hidden = "_" * len(self.word)
         self.players = {}
+        arquivo.close()
 
-    def getWord(self):
-        return "abelha"
+    def getWord(self, linha):
+        palavra = linha.split(":")[0]
+        return palavra
+
+    def getHint(self, linha):
+        dica = linha.split(":")[0]
+        return dica
 
     def printWord(self, command):
         command = command.split(":") 

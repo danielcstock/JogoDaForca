@@ -1,6 +1,7 @@
 from xmlrpc.server import SimpleXMLRPCServer
 import logging
 import os
+import random
 
 # Game variables
 players = {}
@@ -35,11 +36,19 @@ def start_game(word, hint):
     round["hidden"] = hidden
     round["word"] = word
 
+def getRandomLine():
+    arquivo = open('palavras.txt', 'r')
+    lista_palavras = arquivo.readlines()
+    linha = random.choice(lista_palavras)
+    return linha
+
 def getWord():
-    return "abelha"
+    palavra = getRandomLine().split(":")[0]
+    return palavra
 
 def getHint():
-    return "animal"
+    dica = getRandomLine().split(":")[0]
+    return dica
 
 def printWord(player, letter, points):
     retorno = "Errou"

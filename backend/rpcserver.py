@@ -23,7 +23,8 @@ def enter_game(player):
     else:
         print("A sala está cheia.")
     if len(players) == 3:
-        word = start_game(getWord(), getHint())
+        palavra = getRandomLine()
+        word = start_game(getWord(palavra), getHint(palavra))
 server.register_function(enter_game)
 
 def send_letter(player, letter, points):
@@ -42,12 +43,12 @@ def getRandomLine():
     linha = random.choice(lista_palavras)
     return linha
 
-def getWord():
-    palavra = getRandomLine().split(":")[0]
+def getWord(palavra):
+    palavra = palavra.split(":")[0]
     return palavra
 
-def getHint():
-    dica = getRandomLine().split(":")[0]
+def getHint(palavra):
+    dica = palavra.split(":")[1]
     return dica
 
 def printWord(player, letter, points):
